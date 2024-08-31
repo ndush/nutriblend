@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> caa224d127b62d10cd35c105ed2437bc7145a405
 NutriBlend is a web application designed to help users create balanced and nutritious meals easily. By leveraging data from the USDA FoodData Central API, NutriBlend provides meal suggestions based on available ingredients and basic dietary criteria. The app is built using Next.js and MongoDB to ensure a seamless and efficient user experience.
 
 
