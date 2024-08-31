@@ -1,37 +1,126 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+NutriBlend
+NutriBlend is a web application designed to help users create balanced and nutritious meals easily. By leveraging data from the USDA FoodData Central API, NutriBlend provides meal suggestions based on available ingredients and basic dietary criteria. The app is built using Next.js and MongoDB to ensure a seamless and efficient user experience.
 
-## Getting Started
+Table of Contents
+Features
+Technologies
+Installation
+Usage
+API Integration
+API Endpoints
+Future Enhancements
+Contributing
+License
+Features
+Meal Suggestion Based on Available Ingredients:
 
-First, run the development server:
+Users can input a list of ingredients they have on hand and receive suggestions for balanced meals that can be prepared with those ingredients.
+Viewing Ingredient Information:
 
-```bash
+Users can search for an ingredient to view its nutritional information, including calories, protein, and fat.
+User Authentication:
+
+Users can log in with their credentials to access personalized meal suggestions and saved ingredients (Note: Currently simplified to basic authentication).
+Simple Meal Planning:
+
+Users can generate meal ideas based on simple criteria such as high-protein or low-carb (Note: Expanded criteria features are pending).
+Technologies
+Frontend:
+
+Next.js
+React
+CSS Modules
+Backend:
+
+Next.js API routes
+Database:
+
+MongoDB
+API Integration:
+
+Axios
+Authentication:
+
+Custom username/password-based authentication (JWT-based authentication is planned for future implementation)
+Deployment:
+
+Vercel
+Installation
+Clone the Repository:
+
+bash
+Copy code
+git clone https://github.com/yourusername/nutriblend.git
+Navigate to the Project Directory:
+
+bash
+Copy code
+cd nutriblend
+Install Dependencies:
+
+bash
+Copy code
+npm install
+Set Up Environment Variables:
+
+Create a .env.local file in the root directory and add the following environment variables:
+
+makefile
+Copy code
+MONGODB_URI=your_mongodb_connection_string
+FDC_API_KEY=your_usda_fooddata_central_api_key
+Run the Development Server:
+
+bash
+Copy code
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The application will be accessible at http://localhost:3000.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Usage
+Meal Suggestion:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Navigate to the meal suggestion page and input a list of ingredients. The app will display meal suggestions based on the available ingredients.
+Viewing Ingredient Information:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Use the search field to find information about specific ingredients and view their nutritional details.
+User Authentication:
 
-## Learn More
+Log in with your username and password to access personalized features and saved data.
+Meal Planning:
 
-To learn more about Next.js, take a look at the following resources:
+Generate meal ideas based on simple criteria by selecting or inputting criteria on the meal planning page.
+API Integration
+NutriBlend uses the USDA FoodData Central API to fetch nutritional information and meal data. The API provides comprehensive data on food products, including nutritional facts and ingredient details.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+API Key
+To use the USDA FoodData Central API, you need an API key. Obtain your API key by registering on the USDA FoodData Central API website and add it to your .env.local file as FDC_API_KEY.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+API Endpoints
+Search Foods by Ingredients:
 
-## Deploy on Vercel
+Endpoint: GET /api/meals/suggestions
+Description: Retrieves meal suggestions based on provided ingredients.
+Query Parameters: ingredients (comma-separated list of ingredients)
+Example Request: GET /api/meals/suggestions?ingredients=chicken,broccoli
+Search for Ingredient Information:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Endpoint: GET /api/ingredients/search
+Description: Searches for ingredient information using the USDA FoodData Central API.
+Query Parameters: name (name of the ingredient)
+Example Request: GET /api/ingredients/search?name=broccoli
+User Authentication:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# nutriblend
+Endpoint: POST /api/auth/login
+Description: Authenticates a user and returns a session token.
+Body: { "username": "user", "password": "pass" }
+Future Enhancements
+JWT-Based Authentication: Implement custom JWT-based authentication for improved security.
+User Feedback Mechanism: Add a feature to collect and incorporate user feedback.
+Expanded Meal Planning: Include additional criteria such as meal prep time and cuisine type.
+Dark Mode & Accessibility Improvements: Enhance UI/UX with dark mode and accessibility features.
+Contributing
+Contributions are welcome! If you have suggestions or improvements, please fork the repository and submit a pull request. For major changes, please open an issue to discuss your proposed changes before making a pull request.
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
