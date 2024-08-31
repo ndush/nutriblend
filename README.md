@@ -1,16 +1,6 @@
-NutriBlend
 NutriBlend is a web application designed to help users create balanced and nutritious meals easily. By leveraging data from the USDA FoodData Central API, NutriBlend provides meal suggestions based on available ingredients and basic dietary criteria. The app is built using Next.js and MongoDB to ensure a seamless and efficient user experience.
 
-Table of Contents
-Features
-Technologies
-Installation
-Usage
-API Integration
-API Endpoints
-Future Enhancements
-Contributing
-License
+
 Features
 Meal Suggestion Based on Available Ingredients:
 
@@ -24,6 +14,7 @@ Users can log in with their credentials to access personalized meal suggestions 
 Simple Meal Planning:
 
 Users can generate meal ideas based on simple criteria such as high-protein or low-carb (Note: Expanded criteria features are pending).
+
 Technologies
 Frontend:
 
@@ -42,37 +33,32 @@ Axios
 Authentication:
 
 Custom username/password-based authentication (JWT-based authentication is planned for future implementation)
+
 Deployment:
 
 Vercel
+
 Installation
 Clone the Repository:
 
-bash
-Copy code
 git clone https://github.com/yourusername/nutriblend.git
 Navigate to the Project Directory:
 
-bash
-Copy code
 cd nutriblend
 Install Dependencies:
 
-bash
-Copy code
+
 npm install
 Set Up Environment Variables:
 
 Create a .env.local file in the root directory and add the following environment variables:
 
-makefile
-Copy code
+
 MONGODB_URI=your_mongodb_connection_string
 FDC_API_KEY=your_usda_fooddata_central_api_key
 Run the Development Server:
 
-bash
-Copy code
+
 npm run dev
 The application will be accessible at http://localhost:3000.
 
