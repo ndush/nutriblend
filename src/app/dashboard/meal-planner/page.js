@@ -1,23 +1,15 @@
-'use client';
+'use client'; // Must be at the top for client-side components
 import React, { useState } from 'react';
 import axios from 'axios';
 
-// Define props type if using TypeScript (optional)
-// interface MealPlannerProps {
-//   onMealSaved: () => void;
-//   handleMealSuggestionsFetched: () => void;
-//   showSuggestedMeals: boolean;
-//   setShowSuggestedMeals: (value: boolean) => void;
-// }
-
-const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedMeals, setShowSuggestedMeals }) => {
+const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedMeals }) => {
   const [criteria, setCriteria] = useState('');
   const [meals, setMeals] = useState([]);
-  const [displayedMeals, setDisplayedMeals] = useState([]); 
+  const [displayedMeals, setDisplayedMeals] = useState([]);
   const [error, setError] = useState(null);
-  const [nextMealIndex, setNextMealIndex] = useState(0); 
-  const [saving, setSaving] = useState(false); 
-  const [successMessage, setSuccessMessage] = useState(''); 
+  const [nextMealIndex, setNextMealIndex] = useState(0);
+  const [saving, setSaving] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
 
   const fetchMeals = async () => {
     if (!criteria) {
@@ -31,9 +23,9 @@ const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedM
 
       if (response.data && response.data.foods) {
         setMeals(response.data.foods);
-        setNextMealIndex(0); 
-        setDisplayedMeals(response.data.foods.slice(0, 2)); 
-        handleMealSuggestionsFetched(); 
+        setNextMealIndex(0);
+        setDisplayedMeals(response.data.foods.slice(0, 2));
+        handleMealSuggestionsFetched();
       } else {
         setMeals([]);
         setDisplayedMeals([]);
@@ -51,7 +43,7 @@ const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedM
   };
 
   const saveMeal = async (meal) => {
-    setSaving(true); 
+    setSaving(true);
 
     try {
       const token = localStorage.getItem('token');
@@ -76,13 +68,13 @@ const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedM
         }
       });
 
-      setSuccessMessage('Meal saved successfully!'); 
+      setSuccessMessage('Meal saved successfully!');
       if (onMealSaved) onMealSaved();
     } catch (error) {
       console.error('Error saving meal:', error);
       setSuccessMessage('Failed to save meal');
     } finally {
-      setSaving(false); 
+      setSaving(false);
     }
   };
 
@@ -90,7 +82,7 @@ const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedM
     const newIndex = nextMealIndex + 2;
     const newMeals = meals.slice(nextMealIndex, newIndex);
     setDisplayedMeals(newMeals);
-    setNextMealIndex(newIndex); 
+    setNextMealIndex(newIndex);
   };
 
   return (
@@ -104,7 +96,7 @@ const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedM
       </select>
       <button onClick={fetchMeals}>Get Meal Suggestions</button>
       {error && <p>{error}</p>}
-      {successMessage && <p>{successMessage}</p>} 
+      {successMessage && <p>{successMessage}</p>}
 
       {showSuggestedMeals && (
         <>
@@ -117,7 +109,7 @@ const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedM
                 <li key={meal.fdcId}>
                   <strong>{meal.description}</strong> - {meal.foodNutrients.find(n => n.nutrientName === 'Energy')?.value || 0} calories
                   <br />
-                  Protein: {meal.foodNutrients.find(n => n.nutrientName === 'Protein')?.value || 0}g, 
+                  Protein: {meal.foodNutrients.find(n => n.nutrientName === 'Protein')?.value || 0}g,
                   Carbs: {meal.foodNutrients.find(n => n.nutrientName === 'Carbohydrate, by difference')?.value || 0}g,
                   Fats: {meal.foodNutrients.find(n => n.nutrientName === 'Total lipid (fat)')?.value || 0}g
                   <button onClick={() => saveMeal(meal)} disabled={saving}>Save</button>
@@ -134,4 +126,4 @@ const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedM
   );
 };
 
-export default MealPlanner; // Ensure this is a default export of a valid React component
+export default MealPlanner; // Default export of the MealPlanner component
