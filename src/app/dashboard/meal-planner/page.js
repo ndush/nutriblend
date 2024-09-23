@@ -1,6 +1,14 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import axios from 'axios';
+
+// Define props type if using TypeScript (optional)
+// interface MealPlannerProps {
+//   onMealSaved: () => void;
+//   handleMealSuggestionsFetched: () => void;
+//   showSuggestedMeals: boolean;
+//   setShowSuggestedMeals: (value: boolean) => void;
+// }
 
 const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedMeals, setShowSuggestedMeals }) => {
   const [criteria, setCriteria] = useState('');
@@ -10,6 +18,7 @@ const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedM
   const [nextMealIndex, setNextMealIndex] = useState(0); 
   const [saving, setSaving] = useState(false); 
   const [successMessage, setSuccessMessage] = useState(''); 
+
   const fetchMeals = async () => {
     if (!criteria) {
       setError('Please select a criteria.');
@@ -110,8 +119,8 @@ const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedM
                   <br />
                   Protein: {meal.foodNutrients.find(n => n.nutrientName === 'Protein')?.value || 0}g, 
                   Carbs: {meal.foodNutrients.find(n => n.nutrientName === 'Carbohydrate, by difference')?.value || 0}g,
-                   Fats: {meal.foodNutrients.find(n => n.nutrientName === 'Total lipid (fat)')?.value || 0}g
-                  <button onClick={() => saveMeal(meal)} disabled={saving}>Save</button> {/* Disable button during saving */}
+                  Fats: {meal.foodNutrients.find(n => n.nutrientName === 'Total lipid (fat)')?.value || 0}g
+                  <button onClick={() => saveMeal(meal)} disabled={saving}>Save</button>
                 </li>
               ))}
             </ul>
@@ -123,6 +132,6 @@ const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedM
       )}
     </div>
   );
-}
+};
 
-export default MealPlanner;
+export default MealPlanner; // Ensure this is a default export of a valid React component
