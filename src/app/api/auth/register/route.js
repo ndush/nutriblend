@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
-import User from '../../../../models/User';
+import User from '../../../models/User';
 
 const SALT_ROUNDS = 10;
 

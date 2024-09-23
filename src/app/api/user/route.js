@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
-import User from '../../../models/User'; 
+import User from '../../models/User'; 
 import jwt from 'jsonwebtoken';
 
 mongoose.connect(process.env.MONGODB_URI, {

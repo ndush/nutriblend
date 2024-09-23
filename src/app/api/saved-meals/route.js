@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
-import SavedMeal from '../../../models/SavedMeal';
+import SavedMeal from '../../models/SavedMeal';
 import jwt from 'jsonwebtoken';
 
 mongoose.connect(process.env.MONGODB_URI, {
