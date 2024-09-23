@@ -8,7 +8,7 @@ export async function GET(request) {
   const criteria = url.searchParams.get('criteria') || '';
 
   try {
-    // Query the USDA API based on ingredients
+   
     const apiResponse = await axios.get('https://api.nal.usda.gov/fdc/v1/foods/search', {
       params: {
         api_key: process.env.API_KEY,
@@ -18,23 +18,23 @@ export async function GET(request) {
 
     let meals = apiResponse.data.foods || [];
 
-    // Filter meals based on nutrient criteria
+   
     if (nutrientName) {
       meals = meals.filter(meal => 
         meal.foodNutrients && meal.foodNutrients.some(nutrient => nutrient.nutrientName === nutrientName)
       );
     }
 
-    // Filter meals based on simple criteria (e.g., "high-protein", "low-carb")
+    
     if (criteria) {
       meals = meals.filter(meal => {
         switch (criteria.toLowerCase()) {
           case 'high-protein':
-            return meal.foodNutrients && meal.foodNutrients.some(nutrient => nutrient.nutrientName === 'Protein' && nutrient.value >= 15); // Example threshold
+            return meal.foodNutrients && meal.foodNutrients.some(nutrient => nutrient.nutrientName === 'Protein' && nutrient.value >= 15); 
           case 'low-carb':
-            return meal.foodNutrients && meal.foodNutrients.some(nutrient => nutrient.nutrientName === 'Carbohydrate, by difference' && nutrient.value <= 30); // Example threshold
+            return meal.foodNutrients && meal.foodNutrients.some(nutrient => nutrient.nutrientName === 'Carbohydrate, by difference' && nutrient.value <= 30); 
           case 'low-fat':
-            return meal.foodNutrients && meal.foodNutrients.some(nutrient => nutrient.nutrientName === 'Total lipid (fat)' && nutrient.value <= 10); // Example threshold
+            return meal.foodNutrients && meal.foodNutrients.some(nutrient => nutrient.nutrientName === 'Total lipid (fat)' && nutrient.value <= 10); 
           default:
             return true;
         }

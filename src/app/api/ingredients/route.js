@@ -1,5 +1,3 @@
-// src/app/api/ingredients/route.js
-
 import axios from 'axios';
 
 export async function GET(request) {
@@ -13,7 +11,7 @@ export async function GET(request) {
   try {
     const response = await axios.get('https://api.nal.usda.gov/fdc/v1/foods/search', {
       params: { query },
-      headers: { 'X-Api-Key': process.env.API_KEY } // Ensure this header is correct
+      headers: { 'X-Api-Key': process.env.API_KEY } 
     });
 
     return new Response(JSON.stringify(response.data), { status: 200 });

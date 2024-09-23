@@ -1,8 +1,6 @@
-// src/app/layout.js
-
-import '../app/styles/globals.css'; // Import global styles
-import Header from './header'; // Adjust path as necessary
-import Footer from './footer'; // Adjust path as necessary
+import '../app/styles/globals.css';
+import Header from './header'; 
+import Footer from './footer'; 
 
 export const metadata = {
   title: 'Nutriblend',
@@ -17,9 +15,9 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
       </head>
       <body>
-        <Header />  {/* Header should be imported here if used globally */}
+        <Header />  
         {children}
-        <Footer /> {/* Footer should be imported here if used globally */}
+        <Footer /> 
       </body>
     </html>
   );

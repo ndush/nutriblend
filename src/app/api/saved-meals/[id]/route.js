@@ -12,7 +12,7 @@ export async function DELETE(request, { params }) {
   try {
     const { id } = params;
 
-    // Get userId from the token
+    
     const token = request.headers.get('authorization')?.split(' ')[1];
     if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -21,7 +21,7 @@ export async function DELETE(request, { params }) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decoded.userId;
 
-    // Find and delete the meal
+   
     const result = await SavedMeal.deleteOne({ _id: id, userId });
 
     if (result.deletedCount === 0) {

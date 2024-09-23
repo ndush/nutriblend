@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import Navigation from '../navigation'; // Adjust the path as necessary
-import '../../app/styles/globals.css'; // Ensure this path is correct
+import Navigation from '../navigation'; 
+import '../../app/styles/globals.css'; 
 
 export default function IngredientSearchPage() {
   const [query, setQuery] = useState('');
@@ -29,7 +29,7 @@ export default function IngredientSearchPage() {
     <div className="ingredient-search-wrapper">
       <Navigation />
       <div className="image-container">
-        <img src="/images/c.jpg" alt="Search Ingredients" /> {/* Update path accordingly */}
+        <img src="/images/c.jpg" alt="Search Ingredients" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }}/> 
       </div>
       <div className="search-content-container">
         <h1>Ingredient Search</h1>

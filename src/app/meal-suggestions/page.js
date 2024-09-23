@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
-import '../../app/styles/globals.css'; // Adjusted path to go up one level and then to styles
-import Navigation from '../navigation'; // Adjust path as necessary
+import '../../app/styles/globals.css'; 
+import Navigation from '../navigation'; 
 
 export default function MealSuggestion() {
   const [ingredients, setIngredients] = useState('');
@@ -15,7 +15,7 @@ export default function MealSuggestion() {
       return;
     }
 
-    setError(''); // Clear previous errors
+    setError(''); 
 
     try {
       const response = await fetch(`/api/meal-suggestions?ingredients=${encodeURIComponent(ingredients)}&criteria=${encodeURIComponent(criteria)}`);
@@ -43,7 +43,7 @@ export default function MealSuggestion() {
       <Navigation />
       <div className="meal-suggestion-wrapper">
         <div className="image-container">
-          <img src="/images/b.jpg" alt="Meal Suggestions" /> {/* Update the path accordingly */}
+          <img src="/images/b.jpg" alt="Meal Suggestions" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50px' }} /> 
         </div>
         <div className="content-container">
           <input
@@ -54,12 +54,12 @@ export default function MealSuggestion() {
           />
           <button 
             onClick={getMeals}
-            style={{ color: 'white' }} // Button text white
+            style={{ color: 'white' }} 
           >
             Get Meal Suggestions with Criteria
           </button>
-          {error && <p className="error" style={{ color: 'red' }}>{error}</p>} {/* Error text in red */}
-          <ul style={{ color: 'white' }}> {/* List text white */}
+          {error && <p className="error" style={{ color: 'red' }}>{error}</p>} 
+          <ul style={{ color: 'white' }}> 
             {meals.length > 0 ? (
               meals.map((meal, index) => (
                 <li key={index} style={{ marginBottom: '10px' }}>
@@ -76,7 +76,7 @@ export default function MealSuggestion() {
                 </li>
               ))
             ) : (
-              <li>No meals available</li>
+              <li></li>
             )}
           </ul>
         </div>

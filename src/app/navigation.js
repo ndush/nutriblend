@@ -1,4 +1,3 @@
-// src/app/navigation.js
 
 export default function Navigation() {
   return (

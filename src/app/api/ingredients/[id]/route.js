@@ -1,5 +1,3 @@
-// app/api/ingredients/[id]/route.js
-
 import connectDB from '../../../../lib/mongodb';
 
 export async function GET(request, { params }) {

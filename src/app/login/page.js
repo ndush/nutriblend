@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import '../../app/styles/globals.css'; // Adjust path if needed
-import Navigation from '../navigation'; // Adjust path as necessary
+import '../../app/styles/globals.css'; 
+import Navigation from '../navigation'; 
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -19,21 +19,22 @@ export default function Login() {
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
-        router.push('/dashboard'); // Redirect to the dashboard
+        router.push('/dashboard'); 
       } else {
         setError('Invalid username or password.');
       }
     } catch (error) {
       console.error('Login error:', error);
-      setError('Failed to log in.');
+      setError('Login unsuccessful. Please check your credentials and try again.');
     }
   };
 
   return (
     <div className="centered-container">
-      <Navigation /> {/* Include Navigation */}
+      <Navigation /> 
       <div className="login-form">
-        <h1>Login</h1>
+      <h1 style={{ color: 'white' }}>Login</h1>
+
         <form onSubmit={handleSubmit}>
           <label>
             Username:

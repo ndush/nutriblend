@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import '../../app/styles/globals.css'; // Ensure this path is correct
-import Navigation from '../navigation'; // Adjust path as necessary
+import '../../app/styles/globals.css'; 
+import Navigation from '../navigation'; 
 
 export default function Register() {
   const [username, setUsername] = useState('');
@@ -16,7 +16,7 @@ export default function Register() {
 
     try {
       await axios.post('/api/auth/register', { username, password });
-      router.push('/login'); // Redirect to login after successful registration
+      router.push('/login'); 
     } catch (error) {
       console.error('Registration error:', error);
       setError('Failed to register.');
@@ -25,9 +25,9 @@ export default function Register() {
 
   return (
     <div className="centered-container">
-      <Navigation /> {/* Include Navigation */}
+      <Navigation /> 
       <div className="form-container register-form">
-        <h1>Register</h1>
+        <h1 style={{ color: 'white' }}>Register</h1>
         <form onSubmit={handleSubmit}>
           <label>
             Username:

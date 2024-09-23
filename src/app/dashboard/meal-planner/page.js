@@ -1,12 +1,14 @@
-'use client';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function MealPlanner({ onMealSaved }) {
+const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedMeals, setShowSuggestedMeals }) => {
   const [criteria, setCriteria] = useState('');
   const [meals, setMeals] = useState([]);
+  const [displayedMeals, setDisplayedMeals] = useState([]); 
   const [error, setError] = useState(null);
-
+  const [nextMealIndex, setNextMealIndex] = useState(0); 
+  const [saving, setSaving] = useState(false); 
+  const [successMessage, setSuccessMessage] = useState(''); 
   const fetchMeals = async () => {
     if (!criteria) {
       setError('Please select a criteria.');
@@ -19,8 +21,12 @@ export default function MealPlanner({ onMealSaved }) {
 
       if (response.data && response.data.foods) {
         setMeals(response.data.foods);
+        setNextMealIndex(0); 
+        setDisplayedMeals(response.data.foods.slice(0, 2)); 
+        handleMealSuggestionsFetched(); 
       } else {
         setMeals([]);
+        setDisplayedMeals([]);
       }
 
       setError(null);
@@ -35,10 +41,13 @@ export default function MealPlanner({ onMealSaved }) {
   };
 
   const saveMeal = async (meal) => {
+    setSaving(true); 
+
     try {
       const token = localStorage.getItem('token');
       if (!token) {
-        alert('No authentication token found');
+        setSuccessMessage('No authentication token found');
+        setSaving(false);
         return;
       }
 
@@ -50,22 +59,28 @@ export default function MealPlanner({ onMealSaved }) {
         fats: meal.foodNutrients.find(n => n.nutrientName === 'Total lipid (fat)')?.value || 0
       };
 
-      console.log('Saving meal with data:', mealData);
-
-      const response = await axios.post('/api/saved-meals', mealData, {
+      await axios.post('/api/saved-meals', mealData, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       });
 
-      console.log('Save meal response:', response);
-      alert('Meal saved!');
+      setSuccessMessage('Meal saved successfully!'); 
       if (onMealSaved) onMealSaved();
     } catch (error) {
       console.error('Error saving meal:', error);
-      alert('Failed to save meal');
+      setSuccessMessage('Failed to save meal');
+    } finally {
+      setSaving(false); 
     }
+  };
+
+  const handleViewMore = () => {
+    const newIndex = nextMealIndex + 2;
+    const newMeals = meals.slice(nextMealIndex, newIndex);
+    setDisplayedMeals(newMeals);
+    setNextMealIndex(newIndex); 
   };
 
   return (
@@ -79,21 +94,34 @@ export default function MealPlanner({ onMealSaved }) {
       </select>
       <button onClick={fetchMeals}>Get Meal Suggestions</button>
       {error && <p>{error}</p>}
-      <h2>Suggested Meals</h2>
-      {meals.length === 0 ? (
-        <p>No meals available</p>
-      ) : (
-        <ul>
-          {meals.map((meal) => (
-            <li key={meal.fdcId}>
-              <strong>{meal.description}</strong> - {meal.foodNutrients.find(n => n.nutrientName === 'Energy')?.value || 0} calories
-              <br />
-              Protein: {meal.foodNutrients.find(n => n.nutrientName === 'Protein')?.value || 0}g, Carbs: {meal.foodNutrients.find(n => n.nutrientName === 'Carbohydrate, by difference')?.value || 0}g, Fats: {meal.foodNutrients.find(n => n.nutrientName === 'Total lipid (fat)')?.value || 0}g
-              <button onClick={() => saveMeal(meal)}>Save</button>
-            </li>
-          ))}
-        </ul>
+      {successMessage && <p>{successMessage}</p>} 
+
+      {showSuggestedMeals && (
+        <>
+          <h2>Suggested Meals</h2>
+          {displayedMeals.length === 0 ? (
+            <p>No meals available</p>
+          ) : (
+            <ul>
+              {displayedMeals.map((meal) => (
+                <li key={meal.fdcId}>
+                  <strong>{meal.description}</strong> - {meal.foodNutrients.find(n => n.nutrientName === 'Energy')?.value || 0} calories
+                  <br />
+                  Protein: {meal.foodNutrients.find(n => n.nutrientName === 'Protein')?.value || 0}g, 
+                  Carbs: {meal.foodNutrients.find(n => n.nutrientName === 'Carbohydrate, by difference')?.value || 0}g,
+                   Fats: {meal.foodNutrients.find(n => n.nutrientName === 'Total lipid (fat)')?.value || 0}g
+                  <button onClick={() => saveMeal(meal)} disabled={saving}>Save</button> {/* Disable button during saving */}
+                </li>
+              ))}
+            </ul>
+          )}
+          {nextMealIndex < meals.length && (
+            <button onClick={handleViewMore}>View More</button>
+          )}
+        </>
       )}
     </div>
   );
 }
+
+export default MealPlanner;

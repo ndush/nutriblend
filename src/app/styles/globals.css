@@ -1,77 +1,117 @@
-/* styles/globals.css */
 
 body {
   margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #a2c2e4, #8ab4f8, #6a94d4, #003f6c);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
   font-family: Arial, sans-serif;
   line-height: 1.6;
 }
 
+/*  Background Animation */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* General Input Field Styling for Consistency */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+  width: 100%;
+  max-width: 600px; 
+  height: 50px;
+  font-size: 18px;
+  padding: 10px 15px; 
+  margin-bottom: 10px; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; 
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+/* Focused Input Styling */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  border-color: #007bff; 
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+}
+
 /* Header Styling */
 header {
-  background-color: #0070f3; /* Header background color */
   color: white;
   padding: 20px 20px;
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 1000; /* Ensure the header is above other content */
+  z-index: 1000;
 }
 
-/* Header Content Styling */
 .header-content {
   display: flex;
-  align-items: center; /* Vertically center logo and other items */
-  justify-content: space-between; /* Space between logo and other content */
-  max-width: 1200px; /* Optional: limit width for alignment */
-  margin: 0 auto; /* Center the content horizontally */
-  padding: 0 20px; /* Horizontal padding */
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* Logo Styling */
 .logo {
-  font-size: 24px;
+  font-size: 40px;
   font-weight: bold;
   color: white;
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
 }
-
-/* Optional: if you have additional navigation or items in header */
-.header-content .navigation {
-  display: flex;
-  align-items: center;
-}
-
 
 /* Navigation Styling */
 .navigation {
   display: flex;
-  justify-content: flex-end; /* Align links to the right */
+  justify-content: flex-end;
   padding: 0px 5px;
-  background-color: transparent; /* Transparent background to show header background */
   position: fixed;
-  width: calc(100% - 40px); /* Adjust for padding */
-  top: 50px; /* Adjust according to header height */
-  left: 20px; /* Adjust for padding */
-  z-index: 1500; /* Ensure navigation is above header */
+  width: calc(100% - 40px);
+  top: 50px;
+  left: 20px;
+  z-index: 1500;
 }
 
 .navigation ul {
   display: flex;
   list-style: none;
   margin: 0;
-  padding: px;
+  padding: 0;
 }
 
 .navigation li {
-  margin-left: 20px; /* Space between navigation items */
+  margin-left: 20px;
 }
 
 .navigation a {
   text-decoration: none;
-  color: white; /* Navigation link color */
-  font-size: 15px;
-  font-weight: bold; /* Make text bold */
+  color:#98FA00;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .navigation a:hover {
@@ -82,7 +122,6 @@ header {
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #2c1399;
   position: fixed;
   width: 100%;
   bottom: 0;
@@ -147,22 +186,23 @@ li {
 p {
   color: #333;
 }
+
 /* Centering Container */
 .centered-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Center vertically */
+  min-height: 100vh;
   padding: 20px;
-  text-align: center; /* Center text */
+  text-align: center;
 }
 
 /* Form and Button Styles */
 .centered-container input,
 .centered-container button {
   width: 100%;
-  max-width: 600px; /* Optional: limit width */
+  max-width: 600px;
   padding: 10px;
   margin-bottom: 10px;
 }
@@ -172,8 +212,8 @@ p {
   list-style-type: none;
   padding: 0;
   width: 100%;
-  max-width: 600px; /* Optional: limit width */
-  text-align: left; /* Align list items to the left */
+  max-width: 600px;
+  text-align: left;
 }
 
 .centered-container li {
@@ -184,71 +224,16 @@ p {
   color: red;
   margin-top: 10px;
 }
-.ing-form {
-  background-color: #0070f3; /* Background color for the form */
-  padding: 50px;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  width: 100%;
-  max-width: 400px; /* Max width for the form */
-}
-/* Login Form Styling */
-.register-form {
-  background-color: white; /* Background color for the form */
-  padding: 50px;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  width: 100%;
-  max-width: 400px; /* Max width for the form */
-}
-.login-form {
-  background-color: white; /* Background color for the form */
-  padding: 50px;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  width: 100%;
-  max-width: 400px; /* Max width for the form */
-}
-.login-form h1 {
-  margin-top: 0;
-}
 
-.login-form label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.login-form input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  margin-bottom: 10px;
-}
-
-.login-form button {
-  padding: 10px 15px;
-  border: none;
-  background-color: #0070f3;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.login-form button:hover {
-  background-color: #005bb5;
-}
-
-.error {
-  color: red;
-}
+/* Meal Planner Wrapper */
 .meal-planner-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   width: 100%;
-  max-width: 800px; /* Optional: to limit the width */
-  margin: 0 auto; /* Center the component horizontally */
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .meal-planner-wrapper h1 {
@@ -279,96 +264,43 @@ p {
 }
 
 .meal-planner-wrapper li button {
-  align-self: flex-end; /* Align the button to the right */
+  align-self: flex-end;
 }
 
-.dashboard-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  width: 100%;
-  margin-top: 50px;
-}
-
-.left-column, .right-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.left-column {
-  border-right: 1px solid #ccc;
-  padding: 70px;
-}
-
-.right-column {
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.right-column ul {
-  list-style: none;
-  padding: 0;
-  width: 100%;
-  max-width: 600px; /* Optional: limit width */
-}
-
-.right-column li {
-  display: flex;
-  justify-content: space-between; /* Space out the content and button */
-  align-items: center;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  width: 100%;
-  max-width: 600px; /* Optional: limit width */
-}
-
-.right-column li button {
-  margin-left: 10px;
-}
-/* In your styles/globals.css or a dedicated CSS module */
-
+/* Meal Suggestion Wrapper */
 .meal-suggestion-wrapper {
   display: flex;
-  align-items: flex-start; /* Align items at the top */
+  align-items: flex-start;
   padding: 20px;
-  max-width: 1200px; /* Optional: limit the width */
-  margin: 0 auto; /* Center horizontally */
+  max-width: 1200px;
+  margin: 0 auto;
   margin-top: 200px;
 }
 
 .image-container {
-  flex: 1; /* Take up one part of the available space */
-  max-width: 1000px; /* Optional: restrict the image size */
-  margin-right: 20px; /* Space between image and content */
+  flex: 1;
+  max-width: 1000px;
+  margin-right: 20px;
 }
 
 .image-container img {
   width: 100%;
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 8px; /* Optional: rounded corners */
+  height: auto;
+  border-radius: 8px;
 }
 
 .content-container {
-  flex: 2; /* Take up two parts of the available space */
+  flex: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center content vertically */
-  width: 100%; /* Full width of its container */
+  justify-content: center;
+  width: 100%;
 }
 
-/* Ensure input, button, and list items are styled appropriately */
 .content-container input,
 .content-container button {
   margin-bottom: 10px;
-  width: 50%; /* Full width of the content container */
+  width: 50%;
 }
 
 .content-container ul {
@@ -379,50 +311,38 @@ p {
 .content-container li {
   margin-bottom: 10px;
 }
-/* Add to your styles/globals.css or a dedicated CSS module */
 
+/* Ingredient Search Wrapper */
 .ingredient-search-wrapper {
   display: flex;
-  align-items: flex-start; /* Align items at the top */
+  align-items: flex-start;
   padding: 20px;
-  max-width: 1200px; /* Optional: limit the width */
-  margin: 0 auto; /* Center horizontally */
+  max-width: 1200px;
+  margin: 0 auto;
   margin-top: 200px;
 }
 
-.image-container {
-  flex: 1; /* Take up one part of the available space */
-  max-width: 3000px; /* Optional: restrict the image size */
-  margin-right: 20px; /* Space between image and content */
-}
-
-.image-container img {
-  width: 100%;
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 8px; /* Optional: rounded corners */
-}
-
 .search-content-container {
-  flex: 2; /* Take up two parts of the available space */
+  flex: 2;
   display: flex;
   flex-direction: column;
-  width: 100%; /* Full width of its container */
+  width: 100%;
 }
 
 .search-content-container h1 {
-  color: white; /* Text color */
+  color: white;
 }
 
 .search-content-container input,
 .search-content-container button {
   margin-bottom: 10px;
-  width: 50%; /* Full width of the container */
+  width: 50%;
 }
 
 .search-content-container ul {
   list-style: none;
   padding: 0;
-  color: white; /* Text color */
+  color: white;
 }
 
 .search-content-container li {

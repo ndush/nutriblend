@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
-import SavedMeal from '../../models/SavedMeal'; // Adjust the path if needed
+import SavedMeal from '../../models/SavedMeal'; 
 
-// Connect to MongoDB
+
 mongoose.connect('mongodb://localhost:27017/nutriblend', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -12,7 +12,7 @@ export async function POST(request) {
   try {
     const { name, totalCalories, protein, carbs, fats } = await request.json();
     
-    // Create and save a new meal
+  
     const newMeal = new SavedMeal({
       name,
       totalCalories,

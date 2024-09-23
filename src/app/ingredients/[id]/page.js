@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import axios from 'axios';
 
-import '../../../app/styles/globals.css'; // Ensure this path is correct
+import '../../../app/styles/globals.css'; 
 
 export default function IngredientDetailsPage() {
-  const { id } = useParams(); // Extract id from the URL using useParams
+  const { id } = useParams(); 
   const [ingredient, setIngredient] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
