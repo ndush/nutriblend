@@ -5,7 +5,7 @@ import axios from 'axios';
 import Header from '../header';
 import Footer from '../footer';
 import { useRouter } from 'next/navigation';
-import { MealPlanner } from './MealPlanner'; 
+import { MealPlanner } from './meal-planner/MealPlanner'; 
 
 
 const Dashboard = () => {
