@@ -5,7 +5,10 @@ import axios from 'axios';
 import Header from '../header';
 import Footer from '../footer';
 import { useRouter } from 'next/navigation';
-import MealPlanner from './meal-planner/page';
+// import MealPlanner from './meal-planner/page';
+// Named import
+import { MealPlanner } from './meal-planner/page'; 
+
 
 const Dashboard = () => {
   const [savedMeals, setSavedMeals] = useState([]);

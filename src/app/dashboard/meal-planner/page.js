@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedMeals }) => {
+export const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedMeals, setShowSuggestedMeals }) => {
   const [criteria, setCriteria] = useState('');
   const [meals, setMeals] = useState([]);
   const [displayedMeals, setDisplayedMeals] = useState([]);
@@ -125,5 +125,3 @@ const MealPlanner = ({ onMealSaved, handleMealSuggestionsFetched, showSuggestedM
     </div>
   );
 };
-
-export default MealPlanner; // Default export of the MealPlanner component
